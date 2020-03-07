@@ -2,7 +2,7 @@ from fabric import task
 from invoke import Responder
 from _credentials import github_username,github_password
 
-def _get_github_auth_respenders():
+def _get_github_auth_responders():
 
     username_responder = Responder(
         pattern="Username for 'https://github.com':",
@@ -17,7 +17,7 @@ def _get_github_auth_respenders():
 @task()
 def deploy(c):
     supervisor_conf_path = '~/etc/'
-    supervisor_program_name = 'hellodjango-blog-tutoirial'
+    supervisor_program_name = 'hellodjango-blog-tutorial'
 
     project_root_path = '~/apps/HelloDjango-blog-tutorial/'
 
@@ -31,9 +31,9 @@ def deploy(c):
         c.run(cmd,watchers=responders)
 
     with c.cd(project_root_path):
-        c.run('pipenv install --deploy --ignore-pipfile')
-        c.run('pipenv run python manage.py migrate')
-        c.run('pipenv run python collectstatic --noinput')
+        c.run('~/.local/bin/pipenv install --deploy --ignore-pipfile')
+        c.run('~/.local/bin/pipenv run python manage.py migrate')
+        c.run('~/.local/bin/pipenv run python manage.py collectstatic --noinput')
 
     with c.cd(supervisor_conf_path):
         cmd = 'supervisorctl start {}'.format(supervisor_program_name)
