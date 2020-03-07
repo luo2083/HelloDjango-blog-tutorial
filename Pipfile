@@ -1,5 +1,5 @@
 [[source]]
-url = "https://pypi.org/simple"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 verify_ssl = true
 name = "pypi"
 
@@ -9,6 +9,7 @@ markdown = "*"
 gunicorn = "*"
 
 [dev-packages]
+fabric = "*"
 
 [requires]
 python_version = "3.6"
